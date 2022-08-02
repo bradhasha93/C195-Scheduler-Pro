@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import com.schedulerpro.content.ValidatedTextField ?>
+
+<VBox prefHeight="823.0" prefWidth="1022.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TitledPane fx:id="calendarPane" onMouseClicked="#switchPane" text="Calendar">
+         <content>
+            <VBox>
+               <children>
+                  <VBox prefHeight="584.0" prefWidth="1023.0">
+                    <children>
+                      <MenuBar>
+                        <menus>
+                          <Menu mnemonicParsing="false" text="View">
+                            <items>
+                                    <CheckMenuItem fx:id="viewMenu_byWeek" mnemonicParsing="false" onAction="#createCalendar_byWeek" text="By Week" />
+                                    <CheckMenuItem fx:id="viewMenu_byMonth" mnemonicParsing="false" onAction="#createCalendar_byMonth" text="By Month" />
+                            </items>
+                          </Menu>
+                        </menus>
+                      </MenuBar>
+                  <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0">
+                    <children>
+                          <Pane fx:id="mainPane" layoutX="6.0" layoutY="30.0" prefHeight="636.0" prefWidth="985.0">
+                                 <children>
+                                    <GridPane fx:id="calendarPane_byTheMonth" layoutX="6.0" layoutY="5.0" prefHeight="605.0" prefWidth="969.0">
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                    <GridPane fx:id="calendarPane_byTheWeek" layoutX="6.0" layoutY="5.0" prefHeight="605.0" prefWidth="969.0" visible="false">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                    <Button fx:id="previousWeekBtn" layoutX="474.0" layoutY="611.0" mnemonicParsing="false" onAction="#previousWeek" prefHeight="23.0" prefWidth="33.0" text="&lt;&lt;" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="nextWeekBtn" layoutX="511.0" layoutY="611.0" mnemonicParsing="false" onAction="#nextWeek" prefHeight="23.0" prefWidth="33.0" text="&gt;&gt;" visible="false">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </Pane>
+                              <Button fx:id="previousMonthBtn" layoutX="16.0" layoutY="6.0" mnemonicParsing="false" onAction="#previousMonth" prefHeight="23.0" prefWidth="33.0" text="&lt;&lt;">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="nextMonthBtn" layoutX="175.0" layoutY="6.0" mnemonicParsing="false" onAction="#nextMonth" prefHeight="23.0" prefWidth="33.0" text="&gt;&gt;">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                              <Label fx:id="yearLbl" alignment="CENTER" layoutX="886.0" layoutY="6.0" prefHeight="23.0" prefWidth="51.0" style="&#10;" text="April" textAlignment="CENTER" wrapText="false">
+                                 <font>
+                                    <Font size="18.0" fx:id="x11" />
+                                 </font>
+                                 <textFill>
+                                    <Color blue="0.624" green="0.624" red="0.624" fx:id="x21" />
+                                 </textFill>
+                              </Label>
+                              <Button fx:id="nextYearBtn" layoutX="944.0" layoutY="6.0" mnemonicParsing="false" onAction="#nextYear" prefHeight="23.0" prefWidth="33.0" text="&gt;&gt;">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="previousYearBtn" layoutX="846.0" layoutY="6.0" mnemonicParsing="false" onAction="#previousYear" prefHeight="23.0" prefWidth="33.0" text="&lt;&lt;">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Button>
+                              <Label fx:id="monthLbl" alignment="CENTER" layoutX="51.0" layoutY="6.0" prefHeight="23.0" prefWidth="121.0" style="&#10;" text="April" textAlignment="CENTER" wrapText="false">
+                                 <font>
+                                    <Font size="18.0" fx:id="x111" />
+                                 </font>
+                                 <textFill>
+                                    <Color blue="0.624" green="0.624" red="0.624" fx:id="x211" />
+                                 </textFill>
+                              </Label>
+                    </children>
+                  </AnchorPane>
+                    </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TitledPane fx:id="manageCustomersPane" animated="false" expanded="false" onMouseClicked="#switchPane" text="Manage Customers">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="704.0" prefWidth="1000.0">
+               <children>
+                  <TabPane layoutX="2.0" layoutY="1.0" prefHeight="703.0" prefWidth="1023.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Add">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="1023.0">
+                                 <children>
+                                    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="428.0">
+                                       <children>
+                                          <ValidatedTextField fx:id="addNameField" layoutX="17.0" layoutY="31.0" prefHeight="27.0" prefWidth="375.0" minLength="1" maxLength="45" mask=".*" alertMsg="Name must be greater than or equal to 1 character and less than or equal to 45 characters." />
+                                          <ValidatedTextField fx:id="addAddressField" layoutX="17.0" layoutY="81.0" prefHeight="27.0" prefWidth="375.0" minLength="1" maxLength="50" mask=".*" alertMsg="Address must be greater than or equal to 1 character and less than or equal to 50 characters."  />
+                                          <TextField fx:id="addAddress2Field" layoutX="17.0" layoutY="131.0" prefHeight="27.0" prefWidth="375.0" />
+                                          <ValidatedTextField fx:id="addCityField" layoutX="17.0" layoutY="181.0" prefHeight="27.0" prefWidth="287.0" minLength="1" maxLength="50" mask=".*" alertMsg="City must be greater than or equal to 1 character and less than or equal to 45 characters." />
+                                          <ValidatedTextField fx:id="addZipCodeField" layoutX="313.0" layoutY="181.0" prefHeight="27.0" prefWidth="79.0" minLength="5" maxLength="5" mask="^[0-9]*$" alertMsg="Zip Code must be equal to 5 characters." />
+                                          <ComboBox fx:id="addCountryField" layoutX="20.0" layoutY="231.0" prefHeight="27.0" prefWidth="208.0" />
+                                          <ValidatedTextField fx:id="addPhoneField" layoutX="239.0" layoutY="231.0" prefHeight="27.0" prefWidth="153.0" minLength="10" maxLength="10" mask="^[0-9]*$" alertMsg="Phone Number must be 10 digits, no -s." />
+                                          <Label layoutX="17.0" layoutY="14.0" text="*Name" />
+                                          <Label layoutX="17.0" layoutY="64.0" text="*Address" />
+                                          <Label layoutX="17.0" layoutY="114.0" text="Address Line 2" />
+                                          <Label layoutX="17.0" layoutY="164.0" text="*City" />
+                                          <Label layoutX="313.0" layoutY="164.0" text="*Zip Code" />
+                                          <Label layoutX="17.0" layoutY="214.0" text="*Country" />
+                                          <Label layoutX="239.0" layoutY="214.0" text="*Phone" />
+                                          <Label layoutX="14.0" layoutY="266.0" text="* denotes required field" />
+                                          <Button fx:id="addBtn" layoutX="280.0" layoutY="295.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="27.0" prefWidth="112.0" text="Add" />
+                                          <Button fx:id="addResetBtn" layoutX="161.0" layoutY="295.0" mnemonicParsing="false" onAction="#resetAddCustomer" prefHeight="27.0" prefWidth="112.0" text="Reset" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Update">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="428.0">
+                                       <children>
+                                          <ValidatedTextField fx:id="updateNameField" layoutX="17.0" layoutY="31.0" prefHeight="27.0" prefWidth="375.0" minLength="1" maxLength="45" mask=".*" alertMsg="Name must be greater than or equal to 1 character and less than or equal to 45 characters." />
+                                          <ValidatedTextField fx:id="updateAddressField" layoutX="17.0" layoutY="81.0" prefHeight="27.0" prefWidth="375.0" minLength="1" maxLength="50" mask=".*" alertMsg="Address must be greater than or equal to 1 character and less than or equal to 50 characters."  />
+                                          <TextField fx:id="updateAddress2Field" layoutX="17.0" layoutY="131.0" prefHeight="27.0" prefWidth="375.0" />
+                                          <ValidatedTextField fx:id="updateCityField" layoutX="17.0" layoutY="181.0" prefHeight="27.0" prefWidth="287.0" minLength="1" maxLength="50" mask=".*" alertMsg="City must be greater than or equal to 1 character and less than or equal to 45 characters." />
+                                          <ValidatedTextField fx:id="updateZipCodeField" layoutX="313.0" layoutY="181.0" prefHeight="27.0" prefWidth="79.0" minLength="5" maxLength="5" mask="^[0-9]*$" alertMsg="Zip Code must be equal to 5 characters." />
+                                          <ValidatedTextField fx:id="updatePhoneField" layoutX="239.0" layoutY="231.0" prefHeight="27.0" prefWidth="153.0" minLength="10" maxLength="10" mask="^[0-9]*$" alertMsg="Phone Number must be 10 digits, no -s." />
+                                          <Label layoutX="17.0" layoutY="14.0" text="*Name" />
+                                          <Label layoutX="17.0" layoutY="64.0" text="*Address" />
+                                          <Label layoutX="17.0" layoutY="114.0" text="Address Line 2" />
+                                          <Label layoutX="17.0" layoutY="164.0" text="*City" />
+                                          <Label layoutX="313.0" layoutY="164.0" text="*Zip Code" />
+                                          <Label layoutX="17.0" layoutY="214.0" text="*Country" />
+                                          <Label layoutX="239.0" layoutY="214.0" text="*Phone" />
+                                          <Label layoutX="14.0" layoutY="266.0" text="* denotes required field" />
+                                          <Button fx:id="updateUpdateBtn" layoutX="280.0" layoutY="295.0" mnemonicParsing="false" onAction="#updateCustomer" prefHeight="27.0" prefWidth="112.0" text="Update" />
+                                          <CheckBox fx:id="updateActiveField" layoutX="20.0" layoutY="300.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="130.0" text="Active" />
+                                          <ComboBox fx:id="updateCountryField" layoutX="20.0" layoutY="231.0" prefHeight="27.0" prefWidth="208.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <TableView fx:id="customersTbl" layoutX="428.0" layoutY="67.0" prefHeight="254.0" prefWidth="574.0">
+                                      <columns>
+                                        <TableColumn fx:id="customerIdCol" prefWidth="75.0" text="Id" />
+                                        <TableColumn fx:id="customerNameCol" prefWidth="162.0" text="Name" />
+                                          <TableColumn fx:id="customerAddressCol" prefWidth="162.0" text="Address" />
+                                          <TableColumn fx:id="customerActiveCol" prefWidth="174.0" text="Active" />
+                                      </columns>
+                                    </TableView>
+                                    <TextField fx:id="searchCustomersField" layoutX="428.0" layoutY="31.0" promptText="Search customers..." />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane fx:id="manageAppointmentsPane" animated="false" expanded="false" onMouseClicked="#switchPane" text="Manage Appointments">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="704.0" prefWidth="1000.0">
+               <children>
+                  <TabPane fx:id="manageAppointmentsTabPane" prefHeight="703.0" prefWidth="1023.0" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab fx:id="addAppointmentTab" text="Add">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="1023.0">
+                                 <children>
+                                    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="428.0">
+                                       <children>
+                                          <ValidatedTextField fx:id="addAppointmentTitleField" layoutX="17.0" layoutY="128.0" prefHeight="27.0" prefWidth="375.0" minLength="1" maxLength="255" mask=".*" alertMsg="Title must be greater than or equal to 1 character and less than or equal to 255 characters." />
+                                          <ValidatedTextField fx:id="addAppointmentLocationField" layoutX="17.0" layoutY="178.0" prefHeight="27.0" prefWidth="375.0" minLength="1" maxLength="255" mask=".*" alertMsg="Location must be greater than or equal to 1 character." />
+                                          <TextField fx:id="addAppointmentUrlField" layoutX="17.0" layoutY="228.0" prefHeight="27.0" prefWidth="375.0" />
+                                          <ComboBox fx:id="addAppointmentTypeField" layoutX="17.0" layoutY="77.0" prefHeight="27.0" prefWidth="375.0" />
+                                          <Label layoutX="17.0" layoutY="111.0" text="*Title" />
+                                          <Label layoutX="17.0" layoutY="161.0" text="*Location" />
+                                          <Label layoutX="17.0" layoutY="211.0" text="Url" />
+                                          <Label layoutX="14.0" layoutY="60.0" text="*Type" />
+                                          <Label layoutX="14.0" layoutY="323.0" text="* denotes required field" />
+                                          <Button fx:id="addAppointmentAddButton" layoutX="280.0" layoutY="362.0" mnemonicParsing="false" onAction="#addAppointment" prefHeight="27.0" prefWidth="112.0" text="Add" />
+                                          <Button fx:id="addAppointmentResetBtn" layoutX="161.0" layoutY="362.0" mnemonicParsing="false" onAction="#resetAddAppointment" prefHeight="27.0" prefWidth="112.0" text="Reset" />
+                                          <DatePicker fx:id="addAppointmentStartDate" layoutX="17.0" layoutY="279.0" prefHeight="27.0" prefWidth="192.0" />
+                                          <Label layoutX="17.0" layoutY="261.0" text="*Date" />
+                                          <Label layoutX="220.0" layoutY="261.0" text="*Start" />
+                                          <ComboBox fx:id="addAppointmentCustomerField" layoutX="17.0" layoutY="27.0" prefHeight="27.0" prefWidth="375.0" />
+                                          <Label layoutX="14.0" layoutY="9.0" text="*Customer" />
+                                          <Label layoutX="220.0" layoutY="306.0" text="*End" />
+                                          <Spinner fx:id="addAppointmentStartMinute" layoutX="278.0" layoutY="279.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="addAppointmentStartHour" layoutX="220.0" layoutY="279.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="addAppointmentStartAmPm" layoutX="336.0" layoutY="279.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="addAppointmentEndMinute" layoutX="278.0" layoutY="323.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="addAppointmentEndHour" layoutX="220.0" layoutY="323.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="addAppointmentEndAmPm" layoutX="336.0" layoutY="323.0" prefHeight="27.0" prefWidth="55.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab fx:id="updateAppointmentTab" text="Update">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="428.0">
+                                       <children>
+                                          <ValidatedTextField fx:id="updateAppointmentTitleField" layoutX="17.0" layoutY="128.0" prefHeight="27.0" prefWidth="375.0" minLength="1" maxLength="255" mask=".*" alertMsg="Title must be greater than or equal to 1 character and less than or equal to 255 characters." />
+                                          <ValidatedTextField fx:id="updateAppointmentLocationField" layoutX="17.0" layoutY="178.0" prefHeight="27.0" prefWidth="375.0" minLength="1" maxLength="255" mask=".*" alertMsg="Location must be greater than or equal to 1 character." />
+                                          <TextField fx:id="updateAppointmentUrlField" layoutX="17.0" layoutY="228.0" prefHeight="27.0" prefWidth="375.0" />
+                                          <ComboBox fx:id="updateAppointmentTypeField" layoutX="17.0" layoutY="77.0" prefHeight="27.0" prefWidth="375.0" />
+                                          <Label layoutX="17.0" layoutY="111.0" text="*Title" />
+                                          <Label layoutX="17.0" layoutY="161.0" text="*Location" />
+                                          <Label layoutX="17.0" layoutY="211.0" text="Url" />
+                                          <Label layoutX="14.0" layoutY="60.0" text="*Type" />
+                                          <Label layoutX="14.0" layoutY="323.0" text="* denotes required field" />
+                                          <Button fx:id="updateAppointmentUpdateBtn" layoutX="280.0" layoutY="362.0" mnemonicParsing="false" onAction="#updateAppointment" prefHeight="27.0" prefWidth="112.0" text="Update" />
+                                          <Button fx:id="updateAppointmentResetBtn" layoutX="161.0" layoutY="362.0" mnemonicParsing="false" onAction="#resetAddCustomer" prefHeight="27.0" prefWidth="112.0" text="Reset" />
+                                          <DatePicker fx:id="updateAppointmentStartDate" layoutX="17.0" layoutY="279.0" prefHeight="27.0" prefWidth="192.0" />
+                                          <Label layoutX="17.0" layoutY="261.0" text="*Date" />
+                                          <Label layoutX="220.0" layoutY="261.0" text="*Start" />
+                                          <ComboBox fx:id="updateAppointmentCustomerField" layoutX="17.0" layoutY="27.0" prefHeight="27.0" prefWidth="375.0" />
+                                          <Label layoutX="14.0" layoutY="9.0" text="*Customer" />
+                                          <Label layoutX="220.0" layoutY="306.0" text="*End" />
+                                          <Spinner fx:id="updateAppointmentStartMinute" layoutX="278.0" layoutY="279.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="updateAppointmentStartHour" layoutX="220.0" layoutY="279.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="updateAppointmentStartAmPm" layoutX="336.0" layoutY="279.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="updateAppointmentEndMinute" layoutX="278.0" layoutY="323.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="updateAppointmentEndHour" layoutX="220.0" layoutY="323.0" prefHeight="27.0" prefWidth="55.0" />
+                                          <Spinner fx:id="updateAppointmentEndAmPm" layoutX="336.0" layoutY="323.0" prefHeight="27.0" prefWidth="55.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane fx:id="reportsPane" animated="false" expanded="false" onMouseClicked="#switchPane" text="Reports">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="723.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="reportsTbl" layoutX="10.0" layoutY="47.0" prefHeight="657.0" prefWidth="1000.0" />
+                  <Button layoutX="820.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewReport" prefHeight="27.0" prefWidth="186.0" text="View Report" />
+                  <ComboBox fx:id="reports" layoutX="10.0" layoutY="14.0" prefHeight="27.0" prefWidth="804.0" />
+               </children></AnchorPane>
+         </content>
+      </TitledPane>
+   </children>
+</VBox>
